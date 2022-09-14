@@ -29,7 +29,8 @@ public class NioServer {
             socketChannel.socket().bind(new InetSocketAddress(port), 1024);
             socketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("itstack-demo-netty nio server start done. {关注公众号：bugstack虫洞栈 | 欢迎关注&获取源码}");
-            new NioServerHandler(selector, Charset.forName("GBK")).start();
+            NioServerHandler nioServerHandler = new NioServerHandler(selector, Charset.forName("GBK"));
+            nioServerHandler.start();
         } catch (IOException e) {
             e.printStackTrace();
         }

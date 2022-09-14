@@ -19,7 +19,7 @@ public class NioClient {
         SocketChannel socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false);
 
-        boolean isConnect = socketChannel.connect(new InetSocketAddress("192.168.1.116", 7397));
+        boolean isConnect = socketChannel.connect(new InetSocketAddress("127.0.0.1", 7397));
         if (isConnect) {
             socketChannel.register(selector, SelectionKey.OP_READ);
         } else {

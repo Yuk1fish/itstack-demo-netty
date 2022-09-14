@@ -1,7 +1,5 @@
 package org.itstack.demo.netty.nio;
 
-import org.itstack.demo.netty.nio.ChannelHandler;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
@@ -33,6 +31,7 @@ public abstract class ChannelAdapter extends Thread {
     public void run() {
         while (true) {
             try {
+                //轮询SelectionKey
                 selector.select(1000);  //Selects a set of keys whose corresponding channels are ready for I/O
                 Set<SelectionKey> selectedKeys = selector.selectedKeys();
                 Iterator<SelectionKey> it = selectedKeys.iterator();
@@ -48,6 +47,7 @@ public abstract class ChannelAdapter extends Thread {
     }
 
     private void handleInput(SelectionKey key) throws IOException {
+        //key如果无效 则返回
         if (!key.isValid()) return;
 
         // 客户端SocketChannel
